@@ -80,6 +80,32 @@ app.post("/viewall", (req, res) => {
     
 })
 
+app.post("/search", (req, res) => {
+    let input=req.body
+    busModel.find(input).then(
+        (data)=>{
+            res.json(data)
+        }
+    ).catch(
+        (error)=>{
+            res.json(error)
+        }
+    )
+    
+})
+
+app.post("/delete",(req,res)=>{
+    let input=req.body
+    busModel.findByIdAndDelete(input._id).then(
+        (response)=>{
+            res.json({"status":"success"})
+        }
+    ).catch(
+        ()=>{
+            res.json({"status":"failure"})
+        }
+    )
+})
 app.listen(8080, () => {
     console.log("Server Running")
 })
