@@ -66,6 +66,20 @@ app.post("/addbus", (req, res) => {
     console.log(bus)
     res.json({ "status": "success" })
 })
+
+app.post("/viewall", (req, res) => {
+    busModel.find().then(
+        (data)=>{
+            res.json(data)
+        }
+    ).catch(
+        (error)=>{
+            res.json(error)
+        }
+    )
+    
+})
+
 app.listen(8080, () => {
     console.log("Server Running")
 })
